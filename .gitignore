@@ -75,3 +75,8 @@ typings/
 
 # WebStorm
 .idea/
+
+# my own files to make life easier
+.test
+.lint
+.db
