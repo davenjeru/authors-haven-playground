@@ -1,0 +1,4 @@
+# Hound CI eslint configurations
+eslint:
+  enabled: true
+
