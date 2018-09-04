@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/davenjeru/authors-haven-playground.svg?branch=develop)](https://travis-ci.org/davenjeru/authors-haven-playground)  [![Maintainability](https://api.codeclimate.com/v1/badges/125cae4b1a3bc03b6522/maintainability)](https://codeclimate.com/github/davenjeru/authors-haven-playground/maintainability)  [![Test Coverage](https://api.codeclimate.com/v1/badges/125cae4b1a3bc03b6522/test_coverage)](https://codeclimate.com/github/davenjeru/authors-haven-playground/test_coverage)
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
