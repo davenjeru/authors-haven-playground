@@ -1,0 +1,2 @@
+export const ADD_TEST_TEXT = 'ADD_TEST_TEXT';
+export const REMOVE_TEST_TEXT = 'REMOVE_TEST_TEXT';
