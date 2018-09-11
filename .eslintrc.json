@@ -7,6 +7,10 @@
     "jsx-a11y"
   ],
   "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 6
+  },
   "rules": {
     "react/jsx-filename-extension": [
       1,

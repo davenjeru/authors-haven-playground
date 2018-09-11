@@ -3,6 +3,6 @@
 #### How should this be manually tested?
 #### Any background context you want to provide?
 #### What are the relevant pivotal tracker stories?
-[#](link)
+[#](https://https://www.pivotaltracker.com/story/show/[#])
 #### Screenshots (if appropriate)
 #### Questions:
