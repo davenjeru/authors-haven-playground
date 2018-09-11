@@ -10,7 +10,8 @@
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 6,
-    "allowImportExportEverywhere": true
+    "allowImportExportEverywhere": true,
+    "codeFrame": true
   },
   "rules": {
     "react/jsx-filename-extension": [
