@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import Enzyme from 'enzyme/build';
+import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16/build';
 
 const enzymeConfig = () => Enzyme.configure({
