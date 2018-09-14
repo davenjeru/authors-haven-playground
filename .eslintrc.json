@@ -7,7 +7,11 @@
     "jsx-a11y"
   ],
   "parser": "babel-eslint",
-  "sourceType": "module",
+  "ecmaFeatures": {
+    "modules": true,
+    "spread": true,
+    "restParams": true
+  },
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
