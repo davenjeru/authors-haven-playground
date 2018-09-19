@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import NavBar from '../commons/NavBar';
 import Main from '../commons/Main/index';
 import Footer from '../commons/Footer';
 import './SignUp.css';
 import SignUpFormCard from './SignUpFormCard';
+import handleBasicSignUp from '../../actions/signUpActions';
+import Loader from '../commons/Loader';
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class SignUp extends React.Component {
     // initial state is set to the names of the input fields.
     // There are flags set to show when to run password validation for instant feedback and whether
     // or not the passwords match
+    // There is a an object that handles the display of password errors:
     this.state = {
       email: '',
       username: '',
@@ -20,6 +22,11 @@ class SignUp extends React.Component {
       confirmPassword: '',
       confirmPasswordReadyForValidation: false,
       passwordsMatch: false,
+      passwordError: {
+        shouldDisplayErrorMessage: false,
+        errorMessage: 'Passwords do not match!',
+        shouldChangeClassName: false,
+      },
     };
   }
 
@@ -44,8 +51,54 @@ class SignUp extends React.Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.validatePassword();
-    // handleSubmit here.
+    if (!this.validatePassword()) {
+      this.setState(
+        prevState => (Object.assign({},
+          prevState,
+          {
+            passwordError: {
+              ...prevState.passwordError,
+              shouldDisplayErrorMessage: true,
+            },
+          },
+        )),
+      );
+
+      const timerId = setInterval(() => {
+        this.setState(
+          prevState => (Object.assign({},
+            prevState,
+            {
+              passwordError: {
+                ...prevState.passwordError,
+                shouldChangeClassName: !prevState.passwordError.shouldChangeClassName,
+              },
+            },
+          )),
+        );
+      }, 150);
+
+      setTimeout(() => {
+        clearInterval(timerId);
+      }, 1000);
+
+      this.setState(
+        prevState => (Object.assign({},
+          prevState,
+          {
+            passwordError: {
+              ...prevState.passwordError,
+              shouldDisplayErrorMessage: true,
+            },
+          },
+        )),
+      );
+    } else {
+      const { signUp } = this.props;
+      const { email, username, password } = this.state;
+      const userInfo = { email, username, password };
+      signUp(userInfo);
+    }
   };
 
   onFieldChange = (event) => {
@@ -84,9 +137,14 @@ class SignUp extends React.Component {
       passwordsMatch,
       password,
       confirmPassword,
+      passwordError,
     } = this.state;
 
     const passwordsEmpty = password === '' || confirmPassword === '';
+
+    if (passwordError.shouldChangeClassName) {
+      return 'passwords-do-not-match';
+    }
 
     if (confirmPasswordReadyForValidation) {
       if (passwordsEmpty) {
@@ -97,12 +155,42 @@ class SignUp extends React.Component {
     return '';
   };
 
+  onSignUpButtonBlur = () => {
+    this.setState(
+      prevState => (Object.assign({},
+        prevState,
+        {
+          passwordError: {
+            ...prevState.passwordError,
+            shouldDisplayErrorMessage: false,
+          },
+        },
+      )),
+    );
+  };
+
+  preventSubmitOnEnter = (event) => {
+    const { passwordsMatch } = this.state;
+    if (event.key === 'Enter' && !passwordsMatch) {
+      event.preventDefault();
+    }
+  };
+
 
   render() {
+    const { passwordError } = this.state;
+    const { shouldDisplayErrorMessage, errorMessage } = passwordError;
+    const { isSubmitting } = this.props;
     return (
       <React.Fragment>
         <NavBar />
         <Main>
+          {isSubmitting
+            ? (
+              <div className="blur-screen">
+                <Loader className="sign-up-loader" />
+              </div>
+            ) : ''}
           <div className="container py-5">
             <SignUpFormCard
               onFieldChange={this.onFieldChange}
@@ -110,6 +198,11 @@ class SignUp extends React.Component {
               onPasswordInputFocus={this.onPasswordInputFocus}
               onPasswordInputBlur={this.onPasswordInputBlur}
               getPasswordFieldClassName={this.getPasswordFieldClassName}
+              shouldDisplayErrorMessage={shouldDisplayErrorMessage}
+              errorMessage={errorMessage}
+              onSignUpButtonBlur={this.onSignUpButtonBlur}
+              isSubmitting={isSubmitting}
+              preventSubmitOnEnter={this.preventSubmitOnEnter}
             />
           </div>
         </Main>
@@ -121,15 +214,15 @@ class SignUp extends React.Component {
 
 SignUp.propTypes = {};
 
-const mapStateToProps = state => (
+const mapStateToProps = ({ signUpState }) => (
   {
-    state,
+    ...signUpState,
   }
 );
 
 const mapDispatchToProps = dispatch => (
   {
-    actions: bindActionCreators({}, dispatch),
+    signUp: userInfo => dispatch(handleBasicSignUp(userInfo)),
   }
 );
 

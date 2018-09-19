@@ -6,7 +6,8 @@ const SignUpFormCard = ({
   onFieldChange,
   onSubmit,
   onPasswordInputFocus,
-  onPasswordInputBlur, getPasswordFieldClassName,
+  onPasswordInputBlur, onSignUpButtonBlur, preventSubmitOnEnter,
+  getPasswordFieldClassName, shouldDisplayErrorMessage, errorMessage, isSubmitting,
 }) => (
   <div
     className="card text-center mx-auto sign-up-form-card"
@@ -14,7 +15,7 @@ const SignUpFormCard = ({
     <div className="card-header">
       <h2>Sign Up</h2>
     </div>
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} onKeyPress={preventSubmitOnEnter}>
       <div className="row">
         <p className="col-12">You could sign up with...</p>
         <div className="col-12">
@@ -80,12 +81,18 @@ const SignUpFormCard = ({
           />
         </div>
       </div>
+      {shouldDisplayErrorMessage
+        ? <p className="mb-2 mx-5 p-1 alert alert-danger">{errorMessage}</p>
+        : ''}
+
       <div className="text-center">
         <button
           type="submit"
           className="btn btn-primary"
+          onBlur={onSignUpButtonBlur}
+          disabled={isSubmitting}
         >
-          Sign Up
+          {isSubmitting ? 'Signing up...' : 'Sign Up'}
         </button>
         <p>
           Already have an account? Login

@@ -18,3 +18,19 @@ form {
     box-shadow: 0 0 0.5em red;
     border: 0.01em solid red;
 }
+
+.blur-screen {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #f8f9fa;
+    opacity: 0.3;
+}
+
+.sign-up-loader {
+    display: block;
+    margin: 38vh auto auto;
+}
