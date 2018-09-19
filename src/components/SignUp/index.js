@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import NavBar from '../commons/NavBar';
 import Main from '../commons/Main/index';
-import Footer from '../commons/Footer';
+import Footer from '../commons/Footer/index';
 import './SignUp.css';
 import SignUpFormCard from './SignUpFormCard';
 import handleBasicSignUp from '../../actions/signUpActions';
@@ -180,7 +180,7 @@ class SignUp extends React.Component {
   render() {
     const { passwordError } = this.state;
     const { shouldDisplayErrorMessage, errorMessage } = passwordError;
-    const { isSubmitting } = this.props;
+    const { isSubmitting, signUpSuccess, signUpFailure } = this.props;
     return (
       <React.Fragment>
         <NavBar />
@@ -191,20 +191,35 @@ class SignUp extends React.Component {
                 <Loader className="sign-up-loader" />
               </div>
             ) : ''}
-          <div className="container py-5">
-            <SignUpFormCard
-              onFieldChange={this.onFieldChange}
-              onSubmit={this.onSubmit}
-              onPasswordInputFocus={this.onPasswordInputFocus}
-              onPasswordInputBlur={this.onPasswordInputBlur}
-              getPasswordFieldClassName={this.getPasswordFieldClassName}
-              shouldDisplayErrorMessage={shouldDisplayErrorMessage}
-              errorMessage={errorMessage}
-              onSignUpButtonBlur={this.onSignUpButtonBlur}
-              isSubmitting={isSubmitting}
-              preventSubmitOnEnter={this.preventSubmitOnEnter}
-            />
-          </div>
+          {signUpSuccess
+            ? (
+              <div
+                className="alert alert-success text-center"
+                style={{ margin: '10em 5em auto 5em' }}
+              >
+                {this.props.message}
+              </div>
+            ) : (
+              <div className="container pt-5">
+                {signUpFailure ? (
+                  <div className="alert alert-danger text-center mx-1">
+                    {this.props.errorMessage}
+                  </div>
+                ) : ''}
+                <SignUpFormCard
+                  onFieldChange={this.onFieldChange}
+                  onSubmit={this.onSubmit}
+                  onPasswordInputFocus={this.onPasswordInputFocus}
+                  onPasswordInputBlur={this.onPasswordInputBlur}
+                  getPasswordFieldClassName={this.getPasswordFieldClassName}
+                  shouldDisplayErrorMessage={shouldDisplayErrorMessage}
+                  errorMessage={errorMessage}
+                  onSignUpButtonBlur={this.onSignUpButtonBlur}
+                  isSubmitting={isSubmitting}
+                  preventSubmitOnEnter={this.preventSubmitOnEnter}
+                />
+              </div>
+            )}
         </Main>
         <Footer />
       </React.Fragment>

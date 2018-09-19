@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './Main.css';
 
 const Main = ({ children, ...rest }) => (
-  <main {...rest}>
+  <main {...rest} role="main">
     {children}
   </main>
 );
