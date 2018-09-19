@@ -12,8 +12,8 @@ const BenefitsAndCategories = ({ featuredCategories, benefitsArray }) => (
 );
 
 BenefitsAndCategories.propTypes = {
-  featuredCategories: FeaturedCategories.propTypes.featuredCategories.isRequired,
-  benefitsArray: Benefits.propTypes.benefitsArray.isRequired,
+  ...FeaturedCategories.propTypes,
+  ...Benefits.propTypes,
 };
 
 export default BenefitsAndCategories;

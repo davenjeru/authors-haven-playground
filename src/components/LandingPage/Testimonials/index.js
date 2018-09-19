@@ -12,7 +12,7 @@ const Testimonials = ({ testimonialsArray }) => (
 );
 
 Testimonials.propTypes = {
-  testimonialsArray: TestimonialsBody.propTypes.testimonialsArray.isRequired,
+  ...TestimonialsBody.propTypes,
 };
 
 export default Testimonials;

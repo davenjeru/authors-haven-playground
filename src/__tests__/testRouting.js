@@ -19,7 +19,7 @@ describe('The routing set up', () => {
     expect(wrapper('/').find(LandingPage)).toHaveLength(1);
   });
 
-  it('should render landing page on an unknown route', () => {
+  it('should render not found page on an unknown route', () => {
     expect(wrapper('/random').find(NotFound)).toHaveLength(1);
   });
 });

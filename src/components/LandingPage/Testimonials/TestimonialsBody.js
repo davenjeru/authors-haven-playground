@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Testimonials.css';
 
 const TestimonialsBody = ({ testimonialsArray }) => (
   <div className="row">
     {testimonialsArray.map(testimonial => (
       <div key={testimonial.name} className="col-md-4 p-4">
-        <img className="img-fluid rounded-circle testimonials" src={testimonial.image} alt={testimonial.name} />
+        <img className="img-fluid rounded-circle testimonial" src={testimonial.image} alt={testimonial.name} />
         <p className="my-4">
           <i>
             {testimonial.text}

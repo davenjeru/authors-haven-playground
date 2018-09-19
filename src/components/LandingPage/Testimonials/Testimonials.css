@@ -1,0 +1,8 @@
+img.testimonial {
+    width: 192px !important;
+    height: 192px !important;
+}
+
+.home-banner{
+    background: url('../../../assets/images/books.jpg') space;
+}

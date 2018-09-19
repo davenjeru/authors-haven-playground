@@ -2,7 +2,7 @@ import React from 'react';
 import ButtonLink from '../commons/ButtonLink';
 import * as Ruth from '../../assets/images/ruth.jpg';
 import * as Hos from '../../assets/images/hos.jpg';
-import * as Chim from '../../assets/images/face1.jpg';
+import * as Chimammanda from '../../assets/images/face1.jpg';
 import BenefitsAndCategories from './BenefitsAndCategories';
 import Testimonials from './Testimonials';
 import HomeFooter from './HomeFooter';
@@ -30,30 +30,30 @@ const benefitsArray = [
 const featuredCategories = [
   {
     name: 'Technology',
-    count: '312',
+    count: 312,
   },
   {
     name: 'Lifestyle',
-    count: '299',
+    count: 299,
   },
   {
     name: 'Science',
-    count: '259',
+    count: 259,
   },
   {
     name: 'Finance',
-    count: '219',
+    count: 219,
   },
   {
     name: 'Politics',
-    count: '155',
+    count: 155,
   }];
 
 const testimonialsArray = [
   {
     name: 'Chimammanda',
     text: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.',
-    image: Chim,
+    image: Chimammanda,
     role: 'Senior writer',
   },
   {
