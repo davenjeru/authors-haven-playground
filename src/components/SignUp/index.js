@@ -24,7 +24,7 @@ class SignUp extends React.Component {
       passwordsMatch: false,
       passwordError: {
         shouldDisplayErrorMessage: false,
-        errorMessage: 'Passwords do not match!',
+        passwordErrorMessage: 'Passwords do not match!',
         shouldChangeClassName: false,
       },
     };
@@ -179,33 +179,36 @@ class SignUp extends React.Component {
 
   render() {
     const { passwordError } = this.state;
-    const { shouldDisplayErrorMessage, errorMessage } = passwordError;
-    const { isSubmitting, signUpSuccess, signUpFailure } = this.props;
+    const { shouldDisplayErrorMessage, passwordErrorMessage } = passwordError;
+    const { isSubmitting, signUpSuccess, signUpFailure, message, errorMessage } = this.props;
     return (
       <React.Fragment>
         <NavBar />
         <Main>
           {isSubmitting
-            ? (
+            && (
               <div className="blur-screen">
                 <Loader className="sign-up-loader" />
               </div>
-            ) : ''}
+            )}
           {signUpSuccess
             ? (
               <div
                 className="alert alert-success text-center"
                 style={{ margin: '10em 5em auto 5em' }}
               >
-                {this.props.message}
+                {message}
               </div>
             ) : (
-              <div className="container pt-5">
-                {signUpFailure ? (
-                  <div className="alert alert-danger text-center mx-1">
-                    {this.props.errorMessage}
+              <div className="container py-5">
+                {signUpFailure && (
+                  <div className="sign-up-form-card mx-auto">
+                    <div className="alert alert-danger text-center">
+                      {errorMessage}
+                    </div>
                   </div>
-                ) : ''}
+
+                )}
                 <SignUpFormCard
                   onFieldChange={this.onFieldChange}
                   onSubmit={this.onSubmit}
@@ -213,7 +216,7 @@ class SignUp extends React.Component {
                   onPasswordInputBlur={this.onPasswordInputBlur}
                   getPasswordFieldClassName={this.getPasswordFieldClassName}
                   shouldDisplayErrorMessage={shouldDisplayErrorMessage}
-                  errorMessage={errorMessage}
+                  passwordErrorMessage={passwordErrorMessage}
                   onSignUpButtonBlur={this.onSignUpButtonBlur}
                   isSubmitting={isSubmitting}
                   preventSubmitOnEnter={this.preventSubmitOnEnter}
