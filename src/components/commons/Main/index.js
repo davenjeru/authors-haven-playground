@@ -9,7 +9,11 @@ const Main = ({ children, ...rest }) => (
 );
 
 Main.propTypes = {
-  children: PropTypes.shape(),
+  children: PropTypes.arrayOf(
+    PropTypes.oneOfType(
+      [PropTypes.bool, PropTypes.shape(React.Component)],
+
+    )),
 };
 
 Main.defaultProps = {
