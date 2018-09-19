@@ -1,0 +1,20 @@
+.sign-up-form-card {
+    min-width: 400px;
+    max-width: 500px;
+    background-color: #f4f6f8;
+}
+
+
+form {
+    padding: 1em 3em 3em;
+}
+
+.passwords-match {
+    box-shadow: 0 0 0.5em green;
+    border: 0.01em solid green;
+}
+
+.passwords-do-not-match {
+    box-shadow: 0 0 0.5em red;
+    border: 0.01em solid red;
+}
