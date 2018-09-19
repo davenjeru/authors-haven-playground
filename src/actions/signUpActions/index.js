@@ -21,9 +21,9 @@ const handleBasicSignUp = userInfo => (dispatch) => {
     .then(
       (responseObject) => {
         if (responseObject.success) {
-          setTimeout(() => dispatch(signUpSuccess(responseObject.message)), 1000);
+          dispatch(signUpSuccess(responseObject.message));
         } else {
-          setTimeout(() => dispatch(signUpFailure(responseObject.errorMessage)), 1000);
+          dispatch(signUpFailure(responseObject.errorMessage));
         }
       },
     );
