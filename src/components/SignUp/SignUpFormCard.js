@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Link } from 'react-router-dom';
 import React from 'react';
+import PropTypes from 'prop-types';
 import FormInputField from '../commons/FormInputField';
 import Loader from '../commons/Loader';
 
@@ -108,6 +109,19 @@ const SignUpFormCard = ({
     </form>
   </div>
 );
+
+SignUpFormCard.propTypes = {
+  onFieldChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onPasswordInputFocus: PropTypes.func.isRequired,
+  onPasswordInputBlur: PropTypes.func.isRequired,
+  onSignUpButtonBlur: PropTypes.func.isRequired,
+  preventSubmitOnEnter: PropTypes.func.isRequired,
+  getPasswordFieldClassName: PropTypes.func.isRequired,
+  shouldDisplayErrorMessage: PropTypes.bool.isRequired,
+  isSubmitting: PropTypes.bool.isRequired,
+  passwordErrorMessage: PropTypes.string.isRequired,
+};
 
 
 export default SignUpFormCard;
