@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
 import FormInputField from '../commons/FormInputField';
+import Loader from '../commons/Loader';
 
 const SignUpFormCard = ({
   onFieldChange,
@@ -84,13 +85,13 @@ const SignUpFormCard = ({
       {shouldDisplayErrorMessage
         ? <p className="mb-2 mx-5 p-1 alert alert-danger">{passwordErrorMessage}</p>
         : ''}
-
+      {isSubmitting ? <Loader className="sign-up-loader" /> : ''}
       <div className="text-center">
         <button
           type="submit"
-          className="btn btn-primary"
           onBlur={onSignUpButtonBlur}
           disabled={isSubmitting}
+          className="btn btn-primary"
         >
           {isSubmitting ? 'Signing up...' : 'Sign Up'}
         </button>

@@ -31,6 +31,5 @@ form {
 }
 
 .sign-up-loader {
-    display: block;
-    margin: 38vh auto auto;
+    width: 10%;
 }

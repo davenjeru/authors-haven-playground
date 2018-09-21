@@ -180,16 +180,16 @@ class SignUp extends React.Component {
   render() {
     const { passwordError } = this.state;
     const { shouldDisplayErrorMessage, passwordErrorMessage } = passwordError;
-    const { isSubmitting, signUpSuccess, signUpFailure, message, errorMessage } = this.props;
+    const {
+      isSubmitting, signUpSuccess, signUpFailure, message, errorMessage,
+    } = this.props;
     return (
       <React.Fragment>
         <NavBar />
         <Main>
           {isSubmitting
             && (
-              <div className="blur-screen">
-                <Loader className="sign-up-loader" />
-              </div>
+              <div className="blur-screen" />
             )}
           {signUpSuccess
             ? (
