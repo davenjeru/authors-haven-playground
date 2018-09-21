@@ -1,13 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import NavBar from '../commons/NavBar';
 import Main from '../commons/Main/index';
 import Footer from '../commons/Footer/index';
 import './SignUp.css';
 import SignUpFormCard from './SignUpFormCard';
-import handleBasicSignUp from '../../actions/signUpActions';
-import Loader from '../commons/Loader';
+import handleBasicSignUp, { signUpResetState } from '../../actions/signUpActions';
 
+/** *This is the alert that will show the user that they will be redirected after a few seconds
+ * @param secondsToRedirect: {number} The seconds remaining before redirecting */
+const RedirectCountdownAlert = ({ secondsToRedirect }) => (
+  <div
+    className="sign-up-success-message alert alert-warning text-center"
+    style={{ marginTop: '5em' }}
+  >
+      We will redirect you to the
+    {' '}
+    <Link to="/login">login</Link>
+    {' '}
+      page in
+    {' '}
+    <strong>{secondsToRedirect}</strong>
+    {' '}
+      seconds
+  </div>
+);
+
+/** *This is the class that represents the signup page and its state */
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
@@ -27,7 +47,19 @@ class SignUp extends React.Component {
         passwordErrorMessage: 'Passwords do not match!',
         shouldChangeClassName: false,
       },
+      shouldDisplayRedirectMessage: false,
+      shouldStartRedirectCountdownBeCalled: true,
+      secondsToRedirect: 20,
     };
+    this.redirectTimer = () => {};
+  }
+
+  componentWillUnmount() {
+    this.stopRedirectCountdown();
+    const { signUpSuccess, resetSignUpState } = this.props;
+    if (signUpSuccess) {
+      resetSignUpState();
+    }
   }
 
   /** * Function for validating that password and confirm password match
@@ -49,55 +81,66 @@ class SignUp extends React.Component {
     return passwordsMatch;
   };
 
+  flashPasswordInputFields = () => {
+    this.setState(
+      prevState => (Object.assign({},
+        prevState,
+        {
+          passwordError: {
+            ...prevState.passwordError,
+            shouldDisplayErrorMessage: true,
+          },
+        },
+      )),
+    );
+
+    const timerId = setInterval(() => {
+      this.setState(
+        prevState => (Object.assign({},
+          prevState,
+          {
+            passwordError: {
+              ...prevState.passwordError,
+              shouldChangeClassName: !prevState.passwordError.shouldChangeClassName,
+            },
+          },
+        )),
+      );
+    }, 150);
+
+    setTimeout(() => {
+      clearInterval(timerId);
+    }, 1000);
+  };
+
+  displayPasswordErrorMessage = () => {
+    this.setState(
+      prevState => (Object.assign({},
+        prevState,
+        {
+          passwordError: {
+            ...prevState.passwordError,
+            shouldDisplayErrorMessage: true,
+          },
+        },
+      )),
+    );
+  };
+
+  signUpTheUser = () => {
+    const { signUp } = this.props;
+    const { email, username, password } = this.state;
+    const userInfo = { email, username, password };
+    signUp(userInfo);
+  };
+
   onSubmit = (event) => {
     event.preventDefault();
     if (!this.validatePassword()) {
-      this.setState(
-        prevState => (Object.assign({},
-          prevState,
-          {
-            passwordError: {
-              ...prevState.passwordError,
-              shouldDisplayErrorMessage: true,
-            },
-          },
-        )),
-      );
-
-      const timerId = setInterval(() => {
-        this.setState(
-          prevState => (Object.assign({},
-            prevState,
-            {
-              passwordError: {
-                ...prevState.passwordError,
-                shouldChangeClassName: !prevState.passwordError.shouldChangeClassName,
-              },
-            },
-          )),
-        );
-      }, 150);
-
-      setTimeout(() => {
-        clearInterval(timerId);
-      }, 1000);
-
-      this.setState(
-        prevState => (Object.assign({},
-          prevState,
-          {
-            passwordError: {
-              ...prevState.passwordError,
-              shouldDisplayErrorMessage: true,
-            },
-          },
-        )),
-      );
+      this.flashPasswordInputFields();
+      this.displayPasswordErrorMessage();
     } else {
-      const { signUp } = this.props;
-      const { email, username, password } = this.state;
-      const userInfo = { email, username, password };
-      signUp(userInfo);
+      this.signUpTheUser();
     }
   };
 
@@ -176,9 +219,60 @@ class SignUp extends React.Component {
     }
   };
 
+  handleRedirectCountdown = () => {
+    const { secondsToRedirect } = this.state;
+    console.log('redirect countdown', secondsToRedirect);
+    this.setState(prevState => (
+      Object.assign(
+        {},
+        prevState,
+        {
+          shouldStartRedirectCountdownBeCalled: false,
+          secondsToRedirect: prevState.secondsToRedirect - 1,
+        },
+      )),
+    );
+    if (secondsToRedirect === 10) {
+      console.log('redirect countdown after 10', secondsToRedirect);
+      this.setState(prevState => (
+        Object.assign(
+          {},
+          prevState,
+          {
+            shouldDisplayRedirectMessage: true,
+          },
+        )),
+      );
+    }
+  };
+
+  startRedirectCountdown = () => {
+    const { history } = this.props;
+    this.redirectTimer = setInterval(this.handleRedirectCountdown, 1000);
+    setTimeout(() => {
+      console.log('The timer has been stopped');
+      this.stopRedirectCountdown(this.redirectTimer);
+      this.redirectToLogin(history);
+    }, 20000);
+
+    return '';
+  };
+
+  stopRedirectCountdown = (redirectTimer) => {
+    clearInterval(redirectTimer);
+  };
+
+  redirectToLogin = (history) => {
+    history.push('/login');
+  };
 
   render() {
-    const { passwordError } = this.state;
+    const {
+      passwordError,
+      secondsToRedirect,
+      shouldDisplayRedirectMessage,
+      shouldStartRedirectCountdownBeCalled,
+    } = this.state;
     const { shouldDisplayErrorMessage, passwordErrorMessage } = passwordError;
     const {
       isSubmitting, signUpSuccess, signUpFailure, message, errorMessage,
@@ -188,17 +282,26 @@ class SignUp extends React.Component {
         <NavBar />
         <Main>
           {isSubmitting
-            && (
-              <div className="blur-screen" />
-            )}
+          && (
+            <div className="blur-screen" />
+          )}
           {signUpSuccess
             ? (
-              <div
-                className="alert alert-success text-center"
-                style={{ margin: '10em 5em auto 5em' }}
-              >
-                {message}
-              </div>
+              <React.Fragment>
+                <div
+                  className="sign-up-success-message alert alert-success text-center"
+                  style={{ marginTop: '10em' }}
+                >
+                  {message}
+                </div>
+                {shouldStartRedirectCountdownBeCalled ? this.startRedirectCountdown() : ''}
+                {shouldDisplayRedirectMessage && (
+                  <RedirectCountdownAlert
+                    secondsToRedirect={secondsToRedirect}
+                  />
+                )}
+
+              </React.Fragment>
             ) : (
               <div className="container py-5">
                 {signUpFailure && (
@@ -241,6 +344,7 @@ const mapStateToProps = ({ signUpState }) => (
 const mapDispatchToProps = dispatch => (
   {
     signUp: userInfo => dispatch(handleBasicSignUp(userInfo)),
+    resetSignUpState: () => dispatch(signUpResetState()),
   }
 );
 

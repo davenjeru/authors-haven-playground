@@ -33,3 +33,7 @@ form {
 .sign-up-loader {
     width: 10%;
 }
+
+.sign-up-success-message {
+    margin: auto 5em auto 5em
+}

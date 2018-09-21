@@ -1,29 +1,26 @@
 import * as types from '../actions/types';
+import initialState from '../store/initialState';
 
-export const signUpInitialState = {
-  isSubmitting: false,
-  signUpSuccess: false,
-  signUpFailure: false,
-};
-
-const signUpReducer = (state = signUpInitialState, action) => {
+const signUpReducer = (state = initialState.signUpInitialState, action) => {
   switch (action.type) {
     default:
       return state;
     case types.SIGN_UP_BEGIN:
-      return Object.assign({}, signUpInitialState, {
+      return Object.assign({}, initialState.signUpInitialState, {
         isSubmitting: true,
       });
     case types.SIGN_UP_SUCCESS:
-      return Object.assign({}, signUpInitialState, {
+      return Object.assign({}, initialState.signUpInitialState, {
         signUpSuccess: true,
         message: action.METADATA.message,
       });
     case types.SIGN_UP_FAILURE:
-      return Object.assign({}, signUpInitialState, {
+      return Object.assign({}, initialState.signUpInitialState, {
         signUpFailure: true,
         errorMessage: action.METADATA.errorMessage,
       });
+    case types.SIGN_UP_RESET_STATE:
+      return Object.assign({}, initialState.signUpInitialState);
   }
 };
 

@@ -15,6 +15,10 @@ export const signUpFailure = errorMessage => ({
   METADATA: { errorMessage },
 });
 
+export const signUpResetState = () => ({
+  type: types.SIGN_UP_RESET_STATE,
+});
+
 const handleBasicSignUp = userInfo => (dispatch) => {
   dispatch(signUpBegin());
   authenticationService.signUp(userInfo)
