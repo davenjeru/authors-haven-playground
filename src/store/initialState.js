@@ -3,6 +3,8 @@ const initialState = {
     isSubmitting: false,
     signUpSuccess: false,
     signUpFailure: false,
+    successMessage: '',
+    errorMessage: '',
   },
 };
 

@@ -12,7 +12,7 @@ const signUpReducer = (state = initialState.signUpInitialState, action) => {
     case types.SIGN_UP_SUCCESS:
       return Object.assign({}, initialState.signUpInitialState, {
         signUpSuccess: true,
-        message: action.METADATA.message,
+        successMessage: action.METADATA.successMessage,
       });
     case types.SIGN_UP_FAILURE:
       return Object.assign({}, initialState.signUpInitialState, {

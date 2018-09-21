@@ -5,9 +5,9 @@ export const signUpBegin = () => ({
   type: types.SIGN_UP_BEGIN,
 });
 
-export const signUpSuccess = message => ({
+export const signUpSuccess = successMessage => ({
   type: types.SIGN_UP_SUCCESS,
-  METADATA: { message },
+  METADATA: { successMessage },
 });
 
 export const signUpFailure = errorMessage => ({
@@ -25,7 +25,7 @@ const handleBasicSignUp = userInfo => (dispatch) => {
     .then(
       (responseObject) => {
         if (responseObject.success) {
-          dispatch(signUpSuccess(responseObject.message));
+          dispatch(signUpSuccess(responseObject.successMessage));
         } else {
           dispatch(signUpFailure(responseObject.errorMessage));
         }

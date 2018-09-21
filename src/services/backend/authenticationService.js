@@ -13,7 +13,7 @@ class authenticationService {
       .post(signUpUrl, userInfo)
       .then(response => ({
         success: true,
-        message: response.data.Message,
+        successMessage: response.data.Message,
       }))
       .catch((error) => {
         const extractFirstError = (res) => {
