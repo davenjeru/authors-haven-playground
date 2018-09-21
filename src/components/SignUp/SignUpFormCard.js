@@ -7,7 +7,7 @@ const SignUpFormCard = ({
   onSubmit,
   onPasswordInputFocus,
   onPasswordInputBlur, onSignUpButtonBlur, preventSubmitOnEnter,
-  getPasswordFieldClassName, shouldDisplayErrorMessage, errorMessage, isSubmitting,
+  getPasswordFieldClassName, shouldDisplayErrorMessage, passwordErrorMessage, isSubmitting,
 }) => (
   <div
     className="card text-center mx-auto sign-up-form-card"
@@ -82,7 +82,7 @@ const SignUpFormCard = ({
         </div>
       </div>
       {shouldDisplayErrorMessage
-        ? <p className="mb-2 mx-5 p-1 alert alert-danger">{errorMessage}</p>
+        ? <p className="mb-2 mx-5 p-1 alert alert-danger">{passwordErrorMessage}</p>
         : ''}
 
       <div className="text-center">
