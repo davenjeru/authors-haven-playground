@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Link } from 'react-router-dom';
 import React from 'react';
 import FormInputField from '../commons/FormInputField';
@@ -16,7 +17,11 @@ const SignUpFormCard = ({
     <div className="card-header">
       <h2>Sign Up</h2>
     </div>
-    <form onSubmit={onSubmit} onKeyPress={preventSubmitOnEnter}>
+    {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+    <form
+      onSubmit={onSubmit}
+      onKeyPress={preventSubmitOnEnter}
+    >
       <div className="row">
         <p className="col-12">You could sign up with...</p>
         <div className="col-12">
