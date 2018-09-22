@@ -6,6 +6,8 @@ import * as Chimammanda from '../../assets/images/face1.jpg';
 import BenefitsAndCategories from './BenefitsAndCategories';
 import Testimonials from './Testimonials';
 import HomeFooter from './HomeFooter';
+import AHLogo from '../commons/AHLogo';
+import './LandingPage.css';
 
 const benefitsArray = [
   {
@@ -74,6 +76,7 @@ const LandingPageHeader = () => (
     <div className="container">
       <div className="row">
         <div className="py-5 col-md-12">
+          <AHLogo className="landing-logo" />
           <h1 className="display-4 text-white">Authors Haven</h1>
           <h3 className="text-white">
             Big Ideas
