@@ -1,34 +1,35 @@
 import mockAxios from 'jest-mock-axios';
 import authenticationService, { signUpUrl } from '../../services/backend/authenticationService';
 
-describe('The authenticationService.signUp', () => {
-  // initialize the variables that will be used to create our spies
-  let thenFn;
-  let catchFn;
+// initialize the variables that will be used to create our spies
+let thenFn;
+let catchFn;
 
-  /* mockResponse and mockError are asynchronous functions that need to be wrapped
-   * around async await
+/** * We are exporting these variables because they will be used to test our Action Creators */
+/* mockResponse and mockError are asynchronous functions that need to be wrapped
+ * around async await
+ */
+export const mockResponse = async (responseObject = undefined, requestInfo = undefined) => {
+  await mockAxios.mockResponse(responseObject, requestInfo);
+};
+
+export const mockError = async (err = undefined, requestInfo = undefined) => {
+  /* this is to simulate how axios obtains its errors.
+   * It expects an object that has a response attribute that holds the response data
+   * from the backend
    */
-  const mockResponse = async (responseObject = undefined, requestInfo = undefined) => {
-    await mockAxios.mockResponse(responseObject, requestInfo);
-  };
+  const errorObject = { response: err };
+  await mockAxios.mockError(errorObject, requestInfo);
+};
 
-  const mockError = async (err = undefined, requestInfo = undefined) => {
-    /* this is to simulate how axios obtains its errors.
-     * It expects an object that has a response attribute that holds the response data
-     * from the backend
-     */
-    const errorObject = { response: err };
-    await mockAxios.mockError(errorObject, requestInfo);
-  };
+// initialize the user information that should be sent in the request body
+export const userInfo = {
+  email: 'test@email.com',
+  username: 'testUsername',
+  password: 'testPassword',
+};
 
-  // initialize the user information that should be sent in the request body
-  const userInfo = {
-    email: 'test@email.com',
-    username: 'testUsername',
-    password: 'testPassword',
-  };
-
+describe('The authenticationService.signUp', () => {
   // call the authenticationService.signUp(userInfo) before each single test
   beforeEach(
     () => {
