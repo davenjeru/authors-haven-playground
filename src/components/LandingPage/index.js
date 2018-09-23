@@ -8,6 +8,7 @@ import Testimonials from './Testimonials';
 import HomeFooter from './HomeFooter';
 import AHLogo from '../commons/AHLogo';
 import './LandingPage.css';
+import * as routes from '../../routes';
 
 const benefitsArray = [
   {
@@ -81,8 +82,8 @@ const LandingPageHeader = () => (
           <h3 className="text-white">
             Big Ideas
           </h3>
-          <ButtonLink to="/login" className="btn-secondary mr-1" buttonText="Login" />
-          <ButtonLink to="/signup" className="btn-primary mx-1" buttonText="Signup" />
+          <ButtonLink to={routes.LOG_IN_ROUTE} className="btn-secondary mr-1" buttonText="Login" />
+          <ButtonLink to={routes.SIGN_UP_ROUTE} className="btn-primary mx-1" buttonText="Signup" />
         </div>
       </div>
     </div>

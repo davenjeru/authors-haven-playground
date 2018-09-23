@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
+import * as routes from '../../routes';
 
 /** *This is the alert that will show the user that they will be redirected after a few seconds
  * @param secondsToRedirect: {number} The seconds remaining before redirecting */
@@ -11,7 +12,7 @@ const RedirectCountdownAlert = ({ secondsToRedirect }) => (
   >
     We will redirect you to the
     {' '}
-    <Link to="/login">login</Link>
+    <Link to={routes.LOG_IN_ROUTE}>login</Link>
     {' '}
     page in
     {' '}

@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FormInputField from '../commons/FormInputField';
 import Loader from '../commons/Loader';
+import * as routes from '../../routes';
 
 const SignUpFormCard = ({
   onFieldChange,
@@ -103,7 +104,7 @@ const SignUpFormCard = ({
         </button>
         <p>
           Already have an account? Login
-          <Link to="/login"> here</Link>
+          <Link to={routes.LOG_IN_ROUTE}> here</Link>
         </p>
       </div>
     </form>
