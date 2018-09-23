@@ -137,6 +137,23 @@ class SignUp extends React.Component {
   };
 
   /**
+   * When the user clicks outside the sign up button, then don't display the passwordErrorMessage
+   */
+  onSignUpButtonBlur = () => {
+    this.setState(
+      prevState => (Object.assign({},
+        prevState,
+        {
+          passwordError: {
+            ...prevState.passwordError,
+            shouldDisplayErrorMessage: false,
+          },
+        },
+      )),
+    );
+  };
+
+  /**
    * This function is called when the password fields need a className.
    * @return {string} a class defined in SignUp.css
    */
@@ -229,23 +246,6 @@ class SignUp extends React.Component {
           passwordError: {
             ...prevState.passwordError,
             shouldDisplayErrorMessage: true,
-          },
-        },
-      )),
-    );
-  };
-
-  /**
-   * When the user clicks outside the sign up button, then don't display the passwordErrorMessage
-   */
-  onSignUpButtonBlur = () => {
-    this.setState(
-      prevState => (Object.assign({},
-        prevState,
-        {
-          passwordError: {
-            ...prevState.passwordError,
-            shouldDisplayErrorMessage: false,
           },
         },
       )),
