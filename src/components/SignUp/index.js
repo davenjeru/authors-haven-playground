@@ -75,6 +75,18 @@ class SignUp extends React.Component {
     }
   }
 
+  /** * This is what is done when the form is submitted
+   * @param event {Event} The DOM event that triggered this function */
+  onSubmit = (event) => {
+    event.preventDefault();
+    if (!this.validatePassword()) {
+      this.displayPasswordErrorMessage();
+      this.flashPasswordInputFields();
+    } else {
+      this.signUpTheUser();
+    }
+  };
+
   /**
    * This function is called when the password fields need a className.
    * @return {string} a class defined in SignUp.css
@@ -115,18 +127,6 @@ class SignUp extends React.Component {
     const { email, username, password } = this.state;
     const userInfo = { email, username, password };
     signUp(userInfo);
-  };
-
-  /** * This is what is done when the form is submitted
-   * @param event {Event} The DOM event that triggered this function */
-  onSubmit = (event) => {
-    event.preventDefault();
-    if (!this.validatePassword()) {
-      this.displayPasswordErrorMessage();
-      this.flashPasswordInputFields();
-    } else {
-      this.signUpTheUser();
-    }
   };
 
   /** * Update the internal state when an input field changes
