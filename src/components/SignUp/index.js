@@ -75,21 +75,6 @@ class SignUp extends React.Component {
     }
   }
 
-  /** * Handles the display of the 'Passwords do not match!' error message */
-  displayPasswordErrorMessage = () => {
-    this.setState(
-      prevState => (Object.assign({},
-        prevState,
-        {
-          passwordError: {
-            ...prevState.passwordError,
-            shouldDisplayErrorMessage: true,
-          },
-        },
-      )),
-    );
-  };
-
   /** * Handles signing up the user by dispatching an action that
    * sends the request to the backend */
   signUpTheUser = () => {
@@ -193,7 +178,6 @@ class SignUp extends React.Component {
     return '';
   };
 
-
   /** * Handles the flashing of the password input fields */
   flashPasswordInputFields = () => {
     const timerId = setInterval(() => {
@@ -234,6 +218,21 @@ class SignUp extends React.Component {
       )),
     );
     return passwordsMatch;
+  };
+
+  /** * Handles the display of the 'Passwords do not match!' error message */
+  displayPasswordErrorMessage = () => {
+    this.setState(
+      prevState => (Object.assign({},
+        prevState,
+        {
+          passwordError: {
+            ...prevState.passwordError,
+            shouldDisplayErrorMessage: true,
+          },
+        },
+      )),
+    );
   };
 
   /**
