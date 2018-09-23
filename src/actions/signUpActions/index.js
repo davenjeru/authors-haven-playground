@@ -22,15 +22,10 @@ export const signUpResetState = () => ({
 const handleBasicSignUp = userInfo => (dispatch) => {
   dispatch(signUpBegin());
   authenticationService.signUp(userInfo)
-    .then(
-      (responseObject) => {
-        if (responseObject.success) {
-          dispatch(signUpSuccess(responseObject.successMessage));
-        } else {
-          dispatch(signUpFailure(responseObject.errorMessage));
-        }
-      },
-    );
+    // when the promise resolves... dispatch signupSuccess with the successMessage
+    .then(successMessage => dispatch(signUpSuccess(successMessage)))
+    // when the promise rejects, dispatch signUpFailure with the errorMessage
+    .catch(errorMessage => dispatch(signUpFailure(errorMessage)));
 };
 
 export default handleBasicSignUp;
