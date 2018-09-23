@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The NavBar should not regress 1`] = `
+<header>
+  <nav
+    className="navbar bg-primary fixed-top"
+  >
+    <div
+      className="container"
+    >
+      <div
+        className="navbar-brand"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          <img
+            alt="Authors Haven Logo"
+            className="nav-logo"
+            src={
+              Object {
+                "0": "A",
+                "1": "u",
+                "10": "v",
+                "11": "e",
+                "12": "n",
+                "13": " ",
+                "14": "L",
+                "15": "o",
+                "16": "g",
+                "17": "o",
+                "18": ".",
+                "19": "j",
+                "2": "t",
+                "20": "p",
+                "21": "e",
+                "22": "g",
+                "3": "h",
+                "4": "o",
+                "5": "r",
+                "6": "s",
+                "7": " ",
+                "8": "H",
+                "9": "a",
+                "default": "Authors Haven Logo.jpeg",
+              }
+            }
+          />
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+`;

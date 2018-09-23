@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import NavBar from '../commons/NavBar/NavBar';
+import NavBar from '../commons/NavBar';
 import Main from '../commons/Main/index';
 import handleBasicSignUp, { signUpResetState } from '../../actions/signUpActions';
 import RedirectCountdownAlert from './RedirectCountdownAlert';
