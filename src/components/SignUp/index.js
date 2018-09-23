@@ -75,27 +75,6 @@ class SignUp extends React.Component {
     }
   }
 
-  /** * Handles the flashing of the password input fields */
-  flashPasswordInputFields = () => {
-    const timerId = setInterval(() => {
-      this.setState(
-        prevState => (Object.assign({},
-          prevState,
-          {
-            passwordError: {
-              ...prevState.passwordError,
-              shouldChangeClassName: !prevState.passwordError.shouldChangeClassName,
-            },
-          },
-        )),
-      );
-    }, 150);
-
-    setTimeout(() => {
-      clearInterval(timerId);
-    }, 1000);
-  };
-
   /** * Handles the display of the 'Passwords do not match!' error message */
   displayPasswordErrorMessage = () => {
     this.setState(
@@ -214,6 +193,27 @@ class SignUp extends React.Component {
     return '';
   };
 
+
+  /** * Handles the flashing of the password input fields */
+  flashPasswordInputFields = () => {
+    const timerId = setInterval(() => {
+      this.setState(
+        prevState => (Object.assign({},
+          prevState,
+          {
+            passwordError: {
+              ...prevState.passwordError,
+              shouldChangeClassName: !prevState.passwordError.shouldChangeClassName,
+            },
+          },
+        )),
+      );
+    }, 150);
+
+    setTimeout(() => {
+      clearInterval(timerId);
+    }, 1000);
+  };
 
   /**
    * Function for validating that password and confirm password match
