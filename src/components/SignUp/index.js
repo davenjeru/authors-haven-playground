@@ -75,6 +75,39 @@ class SignUp extends React.Component {
     }
   }
 
+  /**
+   * This function is called when the password fields need a className.
+   * @return {string} a class defined in SignUp.css
+   */
+  getPasswordFieldClassName = () => {
+    const {
+      confirmPasswordReadyForValidation,
+      passwordsMatch,
+      password,
+      confirmPassword,
+      passwordError,
+    } = this.state;
+
+    const passwordsEmpty = password === '' || confirmPassword === '';
+
+    // If the password error flag shouldChangeClassName is set to true, the fields should glow red
+    if (passwordError.shouldChangeClassName) {
+      return 'passwords-do-not-match';
+    }
+
+    // If the one of the password fields is in focus, return a class name.
+    if (confirmPasswordReadyForValidation) {
+      // If the passwords are empty then the fields should glow red
+      if (passwordsEmpty) {
+        return 'passwords-do-not-match';
+      }
+      // the fields should glow green if the passwords match else they glow red
+      return passwordsMatch ? 'passwords-match' : 'passwords-do-not-match';
+    }
+    // return an empty string if one none of these are met
+    return '';
+  };
+
   /** * Handles signing up the user by dispatching an action that
    * sends the request to the backend */
   signUpTheUser = () => {
@@ -143,39 +176,6 @@ class SignUp extends React.Component {
       }))
       ,
     );
-  };
-
-  /**
-   * This function is called when the password fields need a className.
-   * @return {string} a class defined in SignUp.css
-   */
-  getPasswordFieldClassName = () => {
-    const {
-      confirmPasswordReadyForValidation,
-      passwordsMatch,
-      password,
-      confirmPassword,
-      passwordError,
-    } = this.state;
-
-    const passwordsEmpty = password === '' || confirmPassword === '';
-
-    // If the password error flag shouldChangeClassName is set to true, the fields should glow red
-    if (passwordError.shouldChangeClassName) {
-      return 'passwords-do-not-match';
-    }
-
-    // If the one of the password fields is in focus, return a class name.
-    if (confirmPasswordReadyForValidation) {
-      // If the passwords are empty then the fields should glow red
-      if (passwordsEmpty) {
-        return 'passwords-do-not-match';
-      }
-      // the fields should glow green if the passwords match else they glow red
-      return passwordsMatch ? 'passwords-match' : 'passwords-do-not-match';
-    }
-    // return an empty string if one none of these are met
-    return '';
   };
 
   /** * Handles the flashing of the password input fields */
