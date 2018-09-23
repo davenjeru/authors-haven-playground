@@ -1,36 +1,39 @@
+/* eslint-disable no-underscore-dangle */
 import axios from 'axios';
 
 const { REACT_APP_BASE_URL } = process.env;
-const signUpUrl = `${REACT_APP_BASE_URL}/users/signup/`;
+export const signUpUrl = `${REACT_APP_BASE_URL}/users/signup/`;
 
 /** Class that represents API calls related to a authentication */
 class authenticationService {
-  /** * This is the API call for getting a user's articles
-   * @returns an Object with the success status and article list or error message
-   * @return {Object} success: bool, errorMessage: string, articles: Array */
-  static signUp(userInfo) {
-    return axios
-      .post(signUpUrl, userInfo)
-      .then(response => ({
-        success: true,
-        successMessage: response.data.Message,
-      }))
-      .catch((error) => {
-        const extractFirstError = (res) => {
-          if (res.data.errors) {
-            const [firstKey] = Object.keys(res.data.errors);
-            const [firstError] = res.data.errors[firstKey];
-            return firstError;
-          }
-          return 'We could not get your articles at the moment. '
-            + 'If the problem persists, please refresh the page or login again';
-        };
+  static signUpAttributes: Object = {
+    defaultErrorMessage: 'We could not sign you up at the moment. '
+      + 'If the problem persists, please refresh the page',
+  };
 
-        return ({
-          success: false,
-          errorMessage: extractFirstError(error.response),
+  /** * This is the API call for getting a user's articles
+   * @returns a Promise
+   * @return {Promise} resolves with a successMessage or rejects with an errorMessage */
+  static signUp(userInfo) {
+    return new Promise((resolve, reject) => {
+      axios
+        .post(signUpUrl, userInfo)
+        .then((response) => {
+          resolve(response.data.Message);
+        })
+        .catch((error) => {
+          const extractFirstError = (res) => {
+            try {
+              const [firstKey] = Object.keys(res.data.errors);
+              const [firstError] = res.data.errors[firstKey];
+              return firstError;
+            } catch (e) {
+              return authenticationService.signUpAttributes.defaultErrorMessage;
+            }
+          };
+          reject(extractFirstError(error.response));
         });
-      });
+    });
   }
 }
 
