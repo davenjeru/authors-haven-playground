@@ -75,27 +75,6 @@ class SignUp extends React.Component {
     }
   }
 
-  /**
-   * Function for validating that password and confirm password match
-   * It updates the passwordsMatch flag in the state accordingly
-   * @return {boolean} whether the passwords match or not */
-  validatePassword = () => {
-    const {
-      password,
-      confirmPassword,
-    } = this.state;
-    const passwordsMatch = password === confirmPassword;
-    this.setState(
-      prevState => (Object.assign({},
-        prevState,
-        {
-          passwordsMatch,
-        },
-      )),
-    );
-    return passwordsMatch;
-  };
-
   /** * Handles the flashing of the password input fields */
   flashPasswordInputFields = () => {
     const timerId = setInterval(() => {
@@ -233,6 +212,28 @@ class SignUp extends React.Component {
     }
     // return an empty string if one none of these are met
     return '';
+  };
+
+
+  /**
+   * Function for validating that password and confirm password match
+   * It updates the passwordsMatch flag in the state accordingly
+   * @return {boolean} whether the passwords match or not */
+  validatePassword = () => {
+    const {
+      password,
+      confirmPassword,
+    } = this.state;
+    const passwordsMatch = password === confirmPassword;
+    this.setState(
+      prevState => (Object.assign({},
+        prevState,
+        {
+          passwordsMatch,
+        },
+      )),
+    );
+    return passwordsMatch;
   };
 
   /**
