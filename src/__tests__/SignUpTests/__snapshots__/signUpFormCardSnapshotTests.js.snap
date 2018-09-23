@@ -69,7 +69,7 @@ exports[`The SignUpFormCard should not regress - what is first seen 1`] = `
         className="form-group"
       >
         <input
-          className="form-control undefined"
+          className="form-control "
           name="email"
           onChange={[Function]}
           placeholder="Email Address"
@@ -93,7 +93,7 @@ exports[`The SignUpFormCard should not regress - what is first seen 1`] = `
         className="form-group"
       >
         <input
-          className="form-control undefined"
+          className="form-control "
           name="password"
           onBlur={[Function]}
           onChange={[Function]}
@@ -107,7 +107,7 @@ exports[`The SignUpFormCard should not regress - what is first seen 1`] = `
         className="form-group"
       >
         <input
-          className="form-control undefined"
+          className="form-control "
           name="confirmPassword"
           onBlur={[Function]}
           onChange={[Function]}
@@ -214,7 +214,7 @@ exports[`The SignUpFormCard should not regress - what is seen on submit with pas
         className="form-group"
       >
         <input
-          className="form-control undefined"
+          className="form-control "
           name="email"
           onChange={[Function]}
           placeholder="Email Address"
@@ -238,7 +238,7 @@ exports[`The SignUpFormCard should not regress - what is seen on submit with pas
         className="form-group"
       >
         <input
-          className="form-control undefined"
+          className="form-control "
           name="password"
           onBlur={[Function]}
           onChange={[Function]}
@@ -252,7 +252,7 @@ exports[`The SignUpFormCard should not regress - what is seen on submit with pas
         className="form-group"
       >
         <input
-          className="form-control undefined"
+          className="form-control "
           name="confirmPassword"
           onBlur={[Function]}
           onChange={[Function]}
@@ -363,7 +363,7 @@ exports[`The SignUpFormCard should not regress - what is seen when submitting 1`
         className="form-group"
       >
         <input
-          className="form-control undefined"
+          className="form-control "
           name="email"
           onChange={[Function]}
           placeholder="Email Address"
@@ -387,7 +387,7 @@ exports[`The SignUpFormCard should not regress - what is seen when submitting 1`
         className="form-group"
       >
         <input
-          className="form-control undefined"
+          className="form-control "
           name="password"
           onBlur={[Function]}
           onChange={[Function]}
@@ -401,7 +401,7 @@ exports[`The SignUpFormCard should not regress - what is seen when submitting 1`
         className="form-group"
       >
         <input
-          className="form-control undefined"
+          className="form-control "
           name="confirmPassword"
           onBlur={[Function]}
           onChange={[Function]}
