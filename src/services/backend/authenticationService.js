@@ -1,8 +1,7 @@
-/* eslint-disable no-underscore-dangle */
 import axios from 'axios';
+import { BACKEND_ROOT_URL } from '../../constants';
 
-const { REACT_APP_BASE_URL } = process.env;
-export const signUpUrl = `${REACT_APP_BASE_URL}/users/signup/`;
+export const signUpUrl = `${BACKEND_ROOT_URL}/users/signup/`;
 
 /** Class that represents API calls related to a authentication */
 class authenticationService {
@@ -11,7 +10,7 @@ class authenticationService {
       + 'If the problem persists, please refresh the page',
   };
 
-  /** * This is the API call for getting a user's articles
+  /** * This is the API call for signing up a user
    * @returns a Promise
    * @return {Promise} resolves with a successMessage or rejects with an errorMessage */
   static signUp(userInfo) {

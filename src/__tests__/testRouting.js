@@ -1,9 +1,9 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { mount } from 'enzyme';
-import NotFound from '../components/NotFound';
-import LandingPage from '../components/LandingPage/index';
-import App from '../components/App';
+import NotFound from '../views/NotFound';
+import LandingPage from '../views/LandingPage/index';
+import App from '../views/App';
 import enzymeConfig from '../testConfigurations/enzymeConfig';
 import * as routes from '../routes';
 

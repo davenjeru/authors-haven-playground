@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './css/index.css';
+import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import registerServiceWorker from './registerServiceWorker';
-import App from './components/App';
+import App from './views/App';
 import configureStore from './store/configureStore';
 
 const store = configureStore();
