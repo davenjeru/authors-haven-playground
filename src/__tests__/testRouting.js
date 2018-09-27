@@ -5,6 +5,7 @@ import NotFound from '../components/NotFound';
 import LandingPage from '../components/LandingPage/index';
 import App from '../components/App';
 import enzymeConfig from '../testConfigurations/enzymeConfig';
+import * as routes from '../routes';
 
 enzymeConfig();
 
@@ -16,7 +17,7 @@ describe('The routing set up', () => {
   );
 
   it('should render landing page on the index route', () => {
-    expect(wrapper('/').find(LandingPage)).toHaveLength(1);
+    expect(wrapper(routes.INDEX_ROUTE).find(LandingPage)).toHaveLength(1);
   });
 
   it('should render not found page on an unknown route', () => {

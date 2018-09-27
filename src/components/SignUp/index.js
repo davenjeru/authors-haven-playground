@@ -8,9 +8,10 @@ import RedirectCountdownAlert from './RedirectCountdownAlert';
 import SignUpFormCard from './SignUpFormCard';
 import Footer from '../commons/Footer/index';
 import './SignUp.css';
+import * as routes from '../../routes';
 
 /** *This is the class that represents the signup page and its state */
-class SignUp extends React.Component {
+export class SignUp extends React.Component {
   constructor(props) {
     super(props);
     /*
@@ -323,7 +324,7 @@ class SignUp extends React.Component {
    * @param history {Object} the history object given by <BrowserRouter/>
    */
   redirectToLogin = (history) => {
-    history.push('/login');
+    history.push(routes.LOG_IN_ROUTE);
   };
 
   render() {
@@ -354,7 +355,7 @@ class SignUp extends React.Component {
                 >
                   {successMessage}
                 </div>
-                {shouldStartRedirectCountdownBeCalled ? this.startRedirectCountdown() : ''}
+                {shouldStartRedirectCountdownBeCalled && this.startRedirectCountdown()}
                 {shouldDisplayRedirectMessage && (
                   <RedirectCountdownAlert
                     secondsToRedirect={secondsToRedirect}
@@ -408,13 +409,13 @@ SignUp.propTypes = {
   errorMessage: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({ signUpState }) => (
+export const mapStateToProps = ({ signUpState }) => (
   {
     ...signUpState,
   }
 );
 
-const mapDispatchToProps = dispatch => (
+export const mapDispatchToProps = dispatch => (
   {
     signUp: userInfo => dispatch(handleBasicSignUp(userInfo)),
     resetSignUpState: () => dispatch(signUpResetState()),
