@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import testReducer from './testReducer';
+import signUpReducer from './signUpReducer';
 
 const rootReducer = combineReducers({
-  test: testReducer,
+  signUpState: signUpReducer,
 },
 );
 

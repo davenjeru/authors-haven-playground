@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Footer should not regress 1`] = `
+<footer
+  className="bg-dark footer"
+>
+  <p
+    className="m-auto text-muted"
+  >
+    © Copyright 2018 Authors Haven - All rights reserved.
+  </p>
+</footer>
+`;

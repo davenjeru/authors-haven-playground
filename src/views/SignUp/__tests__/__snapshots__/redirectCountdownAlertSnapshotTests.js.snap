@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The RedirectCountdownAlert should not regress 1`] = `
+<div
+  className="sign-up-success-message alert alert-warning text-center"
+  style={
+    Object {
+      "marginTop": "5em",
+    }
+  }
+>
+  We will redirect you to the
+   
+  <a
+    href="/login"
+    onClick={[Function]}
+  >
+    login
+  </a>
+   
+  page in
+   
+  <strong>
+    10
+  </strong>
+   
+  seconds
+</div>
+`;

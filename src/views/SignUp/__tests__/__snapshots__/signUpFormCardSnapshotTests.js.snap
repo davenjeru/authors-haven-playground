@@ -1,0 +1,444 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The SignUpFormCard should not regress - what is first seen 1`] = `
+<div
+  className="card text-center mx-auto sign-up-form-card"
+>
+  <div
+    className="card-header"
+  >
+    <h2>
+      Sign Up
+    </h2>
+  </div>
+  <form
+    onKeyPress={[Function]}
+    onSubmit={[Function]}
+  >
+    <div
+      className="row"
+    >
+      <p
+        className="col-12"
+      >
+        You could sign up with...
+      </p>
+      <div
+        className="col-12"
+      >
+        <button
+          className="btn btn-primary"
+          type="button"
+        >
+          <a>
+            <i
+              aria-hidden="true"
+              className="fa fa-facebook fa-2x"
+            />
+          </a>
+        </button>
+        <button
+          className="btn btn-danger ml-3"
+          type="button"
+        >
+          <a>
+            <i
+              aria-hidden="true"
+              className="fa fa-google fa-2x"
+            />
+          </a>
+        </button>
+      </div>
+      <hr
+        style={
+          Object {
+            "width": "100%",
+          }
+        }
+      />
+      <p
+        className="col-12"
+      >
+        Or
+      </p>
+    </div>
+    <div
+      className="px-5"
+    >
+      <div
+        className="form-group"
+      >
+        <input
+          className="form-control "
+          name="email"
+          onChange={[Function]}
+          placeholder="Email Address"
+          required={true}
+          type="email"
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <input
+          className="form-control form-control"
+          name="username"
+          onChange={[Function]}
+          placeholder="Username"
+          required={true}
+          type="text"
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <input
+          className="form-control "
+          name="password"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          placeholder="Password"
+          required={true}
+          type="password"
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <input
+          className="form-control "
+          name="confirmPassword"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          placeholder="Confirm Password"
+          required={true}
+          type="password"
+        />
+      </div>
+    </div>
+    
+    
+    <div
+      className="text-center"
+    >
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        onBlur={[Function]}
+        type="submit"
+      >
+        Sign Up
+      </button>
+      <p>
+        Already have an account? Login
+        <a
+          href="/login"
+          onClick={[Function]}
+        >
+           here
+        </a>
+      </p>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`The SignUpFormCard should not regress - what is seen on submit with passwords that do not match 1`] = `
+<div
+  className="card text-center mx-auto sign-up-form-card"
+>
+  <div
+    className="card-header"
+  >
+    <h2>
+      Sign Up
+    </h2>
+  </div>
+  <form
+    onKeyPress={[Function]}
+    onSubmit={[Function]}
+  >
+    <div
+      className="row"
+    >
+      <p
+        className="col-12"
+      >
+        You could sign up with...
+      </p>
+      <div
+        className="col-12"
+      >
+        <button
+          className="btn btn-primary"
+          type="button"
+        >
+          <a>
+            <i
+              aria-hidden="true"
+              className="fa fa-facebook fa-2x"
+            />
+          </a>
+        </button>
+        <button
+          className="btn btn-danger ml-3"
+          type="button"
+        >
+          <a>
+            <i
+              aria-hidden="true"
+              className="fa fa-google fa-2x"
+            />
+          </a>
+        </button>
+      </div>
+      <hr
+        style={
+          Object {
+            "width": "100%",
+          }
+        }
+      />
+      <p
+        className="col-12"
+      >
+        Or
+      </p>
+    </div>
+    <div
+      className="px-5"
+    >
+      <div
+        className="form-group"
+      >
+        <input
+          className="form-control "
+          name="email"
+          onChange={[Function]}
+          placeholder="Email Address"
+          required={true}
+          type="email"
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <input
+          className="form-control form-control"
+          name="username"
+          onChange={[Function]}
+          placeholder="Username"
+          required={true}
+          type="text"
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <input
+          className="form-control "
+          name="password"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          placeholder="Password"
+          required={true}
+          type="password"
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <input
+          className="form-control "
+          name="confirmPassword"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          placeholder="Confirm Password"
+          required={true}
+          type="password"
+        />
+      </div>
+    </div>
+    <p
+      className="mb-2 mx-5 p-1 alert alert-danger"
+    >
+      Passwords do not match
+    </p>
+    
+    <div
+      className="text-center"
+    >
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        onBlur={[Function]}
+        type="submit"
+      >
+        Sign Up
+      </button>
+      <p>
+        Already have an account? Login
+        <a
+          href="/login"
+          onClick={[Function]}
+        >
+           here
+        </a>
+      </p>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`The SignUpFormCard should not regress - what is seen when submitting 1`] = `
+<div
+  className="card text-center mx-auto sign-up-form-card"
+>
+  <div
+    className="card-header"
+  >
+    <h2>
+      Sign Up
+    </h2>
+  </div>
+  <form
+    onKeyPress={[Function]}
+    onSubmit={[Function]}
+  >
+    <div
+      className="row"
+    >
+      <p
+        className="col-12"
+      >
+        You could sign up with...
+      </p>
+      <div
+        className="col-12"
+      >
+        <button
+          className="btn btn-primary"
+          type="button"
+        >
+          <a>
+            <i
+              aria-hidden="true"
+              className="fa fa-facebook fa-2x"
+            />
+          </a>
+        </button>
+        <button
+          className="btn btn-danger ml-3"
+          type="button"
+        >
+          <a>
+            <i
+              aria-hidden="true"
+              className="fa fa-google fa-2x"
+            />
+          </a>
+        </button>
+      </div>
+      <hr
+        style={
+          Object {
+            "width": "100%",
+          }
+        }
+      />
+      <p
+        className="col-12"
+      >
+        Or
+      </p>
+    </div>
+    <div
+      className="px-5"
+    >
+      <div
+        className="form-group"
+      >
+        <input
+          className="form-control "
+          name="email"
+          onChange={[Function]}
+          placeholder="Email Address"
+          required={true}
+          type="email"
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <input
+          className="form-control form-control"
+          name="username"
+          onChange={[Function]}
+          placeholder="Username"
+          required={true}
+          type="text"
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <input
+          className="form-control "
+          name="password"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          placeholder="Password"
+          required={true}
+          type="password"
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <input
+          className="form-control "
+          name="confirmPassword"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          placeholder="Confirm Password"
+          required={true}
+          type="password"
+        />
+      </div>
+    </div>
+    
+    <img
+      alt="Loading..."
+      className="sign-up-loader"
+      src="loader.svg"
+    />
+    <div
+      className="text-center"
+    >
+      <button
+        className="btn btn-primary"
+        disabled={true}
+        onBlur={[Function]}
+        type="submit"
+      >
+        Signing up...
+      </button>
+      <p>
+        Already have an account? Login
+        <a
+          href="/login"
+          onClick={[Function]}
+        >
+           here
+        </a>
+      </p>
+    </div>
+  </form>
+</div>
+`;

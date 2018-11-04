@@ -1,10 +1,11 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { mount } from 'enzyme';
-import NotFound from '../components/NotFound';
-import LandingPage from '../components/LandingPage/index';
-import App from '../components/App';
+import NotFound from '../views/NotFound';
+import LandingPage from '../views/LandingPage/index';
+import App from '../views/App';
 import enzymeConfig from '../testConfigurations/enzymeConfig';
+import * as routes from '../routes';
 
 enzymeConfig();
 
@@ -16,10 +17,10 @@ describe('The routing set up', () => {
   );
 
   it('should render landing page on the index route', () => {
-    expect(wrapper('/').find(LandingPage)).toHaveLength(1);
+    expect(wrapper(routes.INDEX_ROUTE).find(LandingPage)).toHaveLength(1);
   });
 
-  it('should render landing page on an unknown route', () => {
+  it('should render not found page on an unknown route', () => {
     expect(wrapper('/random').find(NotFound)).toHaveLength(1);
   });
 });

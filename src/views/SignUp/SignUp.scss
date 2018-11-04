@@ -1,0 +1,42 @@
+main {
+  .sign-up-success-message {
+    margin: auto 5em auto 5em
+  }
+
+  .sign-up-form-card {
+    min-width: 400px;
+    max-width: 500px;
+    background-color: #f4f6f8;
+
+    form {
+      padding: 1em 3em 3em;
+
+      .passwords-match {
+        box-shadow: 0 0 0.5em green;
+        border: 0.01em solid green;
+      }
+
+      .passwords-do-not-match {
+        box-shadow: 0 0 0.5em red;
+        border: 0.01em solid red;
+      }
+
+      .sign-up-loader {
+        width: 10%;
+      }
+
+    }
+
+  }
+}
+
+.blur-screen {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #f8f9fa;
+    opacity: 0.3;
+}

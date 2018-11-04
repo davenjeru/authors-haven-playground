@@ -1,0 +1,499 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The LandingPage should not regress 1`] = `
+Array [
+  <div
+    className="text-center home-banner"
+>
+    <div
+        className="container"
+    >
+        <div
+            className="row"
+        >
+            <div
+                className="py-5 col-md-12"
+            >
+                <img
+                    alt="Authors Haven Logo"
+                    className="landing-logo"
+                    src="Authors Haven Logo.jpeg"
+                />
+                <h1
+                    className="display-4 text-white"
+                >
+                    Authors Haven
+                </h1>
+                <h3
+                    className="text-white"
+                >
+                    Big Ideas
+                </h3>
+                <a
+                    className="btn btn-secondary mr-1"
+                    href="/login"
+                    onClick={[Function]}
+                >
+                    Login
+                </a>
+                <a
+                    className="btn btn-primary mx-1"
+                    href="/signup"
+                    onClick={[Function]}
+                >
+                    Signup
+                </a>
+            </div>
+        </div>
+    </div>
+</div>,
+  <div
+    className="pt-5 bg-light"
+>
+    <div
+        className="container"
+    >
+        <div
+            className="row text-center"
+        >
+            <div
+                className="col-md-6"
+            >
+                <h4
+                    className="text-primary"
+                >
+                    Featured Categories
+                </h4>
+                <ul
+                    className="list-group"
+                >
+                    <a
+                        href="/#technology"
+                        onClick={[Function]}
+                    >
+                        <li
+                            className="list-group-item d-flex justify-content-between align-items-center"
+                        >
+                            Technology
+                            <span
+                                className="badge badge-pill badge-secondary"
+                            >
+                                312
+                            </span>
+                        </li>
+                    </a>
+                    <a
+                        href="/#technology"
+                        onClick={[Function]}
+                    >
+                        <li
+                            className="list-group-item d-flex justify-content-between align-items-center"
+                        >
+                            Lifestyle
+                            <span
+                                className="badge badge-pill badge-secondary"
+                            >
+                                299
+                            </span>
+                        </li>
+                    </a>
+                    <a
+                        href="/#technology"
+                        onClick={[Function]}
+                    >
+                        <li
+                            className="list-group-item d-flex justify-content-between align-items-center"
+                        >
+                            Science
+                            <span
+                                className="badge badge-pill badge-secondary"
+                            >
+                                259
+                            </span>
+                        </li>
+                    </a>
+                    <a
+                        href="/#technology"
+                        onClick={[Function]}
+                    >
+                        <li
+                            className="list-group-item d-flex justify-content-between align-items-center"
+                        >
+                            Finance
+                            <span
+                                className="badge badge-pill badge-secondary"
+                            >
+                                219
+                            </span>
+                        </li>
+                    </a>
+                    <a
+                        href="/#technology"
+                        onClick={[Function]}
+                    >
+                        <li
+                            className="list-group-item d-flex justify-content-between align-items-center"
+                        >
+                            Politics
+                            <span
+                                className="badge badge-pill badge-secondary"
+                            >
+                                155
+                            </span>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+            <div
+                className="col-md-6"
+            >
+                <h4
+                    className="text-primary"
+                >
+                    Benefits And Features
+                </h4>
+                <div
+                    className="row text-left pl-5"
+                >
+                    <div
+                        className="col-md-6 my-3"
+                    >
+                        <div
+                            className="row mb-3"
+                        >
+                            <div
+                                className="align-self-center col-10 col-md-12"
+                            >
+                                <h5
+                                    className="text-secondary"
+                                >
+                                    Authentic
+                                     
+                                    👌
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        className="col-md-6 my-3"
+                    >
+                        <div
+                            className="row mb-3"
+                        >
+                            <div
+                                className="align-self-center col-10 col-md-12"
+                            >
+                                <h5
+                                    className="text-secondary"
+                                >
+                                    Knowledgeable Authors
+                                     
+                                    📚
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        className="col-md-6 my-3"
+                    >
+                        <div
+                            className="row mb-3"
+                        >
+                            <div
+                                className="align-self-center col-10 col-md-12"
+                            >
+                                <h5
+                                    className="text-secondary"
+                                >
+                                    Membership
+                                     
+                                    💳
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        className="col-md-6 my-3"
+                    >
+                        <div
+                            className="row mb-3"
+                        >
+                            <div
+                                className="align-self-center col-10 col-md-12"
+                            >
+                                <h5
+                                    className="text-secondary"
+                                >
+                                    Affordable
+                                     
+                                    💸
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        className="col-md-6 my-3"
+                    >
+                        <div
+                            className="row mb-3"
+                        >
+                            <div
+                                className="align-self-center col-10 col-md-12"
+                            >
+                                <h5
+                                    className="text-secondary"
+                                >
+                                    Amazing
+                                     
+                                    😌
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        className="col-md-6 my-3"
+                    >
+                        <div
+                            className="row mb-3"
+                        >
+                            <div
+                                className="align-self-center col-10 col-md-12"
+                            >
+                                <h5
+                                    className="text-secondary"
+                                >
+                                    Fun
+                                     
+                                    🙌
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div
+        className="py-5 text-center bg-light"
+    >
+        <div
+            className="container"
+        >
+            <div
+                className="row"
+            >
+                <div
+                    className="col-md-12"
+                >
+                    <h1
+                        className="text-primary"
+                    >
+                        Testimonials
+                    </h1>
+                    <p
+                        className="lead"
+                    >
+                        We grow together with the community
+                    </p>
+                </div>
+            </div>
+            <div
+                className="row"
+            >
+                <div
+                    className="col-md-4 p-4"
+                >
+                    <img
+                        alt="Chimammanda"
+                        className="img-fluid rounded-circle testimonial"
+                        src="face1.jpg"
+                    />
+                    <p
+                        className="my-4"
+                    >
+                        <i>
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+                        </i>
+                    </p>
+                    <p>
+                        <b>
+                            Chimammanda
+                        </b>
+                        <br />
+                        Senior writer
+                    </p>
+                </div>
+                <div
+                    className="col-md-4 p-4"
+                >
+                    <img
+                        alt="Hoslack"
+                        className="img-fluid rounded-circle testimonial"
+                        src="hos.jpg"
+                    />
+                    <p
+                        className="my-4"
+                    >
+                        <i>
+                            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec.
+                        </i>
+                    </p>
+                    <p>
+                        <b>
+                            Hoslack
+                        </b>
+                        <br />
+                        Reader
+                    </p>
+                </div>
+                <div
+                    className="col-md-4 p-4"
+                >
+                    <img
+                        alt="Ruth"
+                        className="img-fluid rounded-circle testimonial"
+                        src="ruth.jpg"
+                    />
+                    <p
+                        className="my-4"
+                    >
+                        <i>
+                            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Cum sociis natoque penatibus et magnis dis parturient montes.
+                        </i>
+                    </p>
+                    <p>
+                        <b>
+                            Ruth
+                        </b>
+                        <br />
+                        Reader
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>,
+  <div
+    className="home-footer"
+>
+    <div
+        className="text-center p-4 bg-dark text-light"
+    >
+        <div
+            className="container"
+        >
+            <div
+                className="row"
+            >
+                <div
+                    className="my-3 col-lg-4 col-md-6"
+                >
+                    <div
+                        className="text-center"
+                    >
+                        <h4>
+                            Authors Haven
+                        </h4>
+                        <p
+                            className="text-muted"
+                        >
+                            July 25 2018
+                        </p>
+                        <p
+                            className="my-3 text-muted"
+                        >
+                            St. Catherines, Off Thika Road, Nairobi
+                            <br />
+                        </p>
+                    </div>
+                </div>
+                <div
+                    className="my-3 col-lg-4 col-md-6"
+                >
+                    <div
+                        className="text-center"
+                    >
+                        <h5>
+                            Ask us a question
+                        </h5>
+                        <form
+                            className="form-row"
+                        >
+                            <input
+                                className="form-control col-12"
+                                placeholder="Enter email"
+                                type="email"
+                            />
+                            <input
+                                className="form-control col-12 mt-1"
+                                placeholder="Question?"
+                                type="text"
+                            />
+                            <button
+                                className="btn btn-outline-primary mx-auto mt-1 text-white"
+                                type="submit"
+                            >
+                                Submit
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div
+                    className="my-3 col-lg-4 col-md-12"
+                >
+                    <div
+                        className="text-center"
+                    >
+                        <h5>
+                            Follow
+                        </h5>
+                        <a
+                            className=""
+                            href="https://www.instagram.com"
+                            target="blank"
+                        >
+                            <i
+                                className="fa fa-3x fa-instagram text-muted p-2"
+                            />
+                        </a>
+                        <a
+                            className=""
+                            href="https://www.facebook.com"
+                            target="blank"
+                        >
+                            <i
+                                className="fa fa-facebook-square text-muted fa-3x p-2"
+                            />
+                        </a>
+                        <a
+                            className=""
+                            href="https://twitter.com"
+                            target="blank"
+                        >
+                            <i
+                                className="fa fa-3x fa-twitter text-muted p-2"
+                            />
+                        </a>
+                        <a
+                            className=""
+                            href="https://plus.google.com"
+                            target="blank"
+                        >
+                            <i
+                                className="fa fa-3x fa-google-plus-official text-muted p-2"
+                            />
+                        </a>
+                    </div>
+                </div>
+                <div
+                    className="col-md-12 text-center text-muted"
+                >
+                    <hr />
+                    © Copyright 2018 Authors Haven - All rights reserved.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>,
+]
+`;
