@@ -416,21 +416,7 @@ exports[`The SignUpFormCard should not regress - what is seen when submitting 1`
     <img
       alt="Loading..."
       className="sign-up-loader"
-      src={
-        Object {
-          "0": "l",
-          "1": "o",
-          "2": "a",
-          "3": "d",
-          "4": "e",
-          "5": "r",
-          "6": ".",
-          "7": "s",
-          "8": "v",
-          "9": "g",
-          "default": "loader.svg",
-        }
-      }
+      src="loader.svg"
     />
     <div
       className="text-center"

@@ -68,23 +68,20 @@ export class SignUp extends React.PureComponent {
       secondsToRedirect: 20,
     };
 
-    /* the redirectTimer is set to an empty function at first. This is done to make it available to
-    * the stopRedirectCountdown function in this class */
-    this.redirectTimer = () => {};
-  }
-
-  /** * Set the document title to Sign Up when the component mounts */
-  componentDidMount() {
-    document.title = `${DOCUMENT_TITLE} | Sign Up`;
+    /* the redirectTimer is set to an object with empty functions at first. This is done to make
+    * it available to the stopRedirectCountdown function in this class */
+    this.redirectTimer = {
+      interval: () => {},
+      timeout: () => {},
+    };
   }
 
   /** * Stop the countdown and reset the state in the store just before the component unmounts */
   componentWillUnmount() {
     this.stopRedirectCountdown(this.redirectTimer);
-    const { signUpSuccess, resetSignUpState } = this.props;
-    if (signUpSuccess) {
-      resetSignUpState();
-    }
+    const { resetSignUpState } = this.props;
+    document.title = DOCUMENT_TITLE;
+    resetSignUpState();
   }
 
   /** * This is what is done when the form is submitted
@@ -268,22 +265,23 @@ export class SignUp extends React.PureComponent {
    */
   startRedirectCountdown = () => {
     const { history } = this.props;
-    this.redirectTimer = setInterval(this.handleRedirectCountdown, REDIRECT_COUNTDOWN_TICKER);
-    setTimeout(() => {
+    this.redirectTimer.interval = setInterval(
+      this.handleRedirectCountdown,
+      REDIRECT_COUNTDOWN_TICKER,
+    );
+    this.redirectTimer.timeout = setTimeout(() => {
       this.stopRedirectCountdown(this.redirectTimer);
-      const { secondsToRedirect } = this.state;
-      if (secondsToRedirect <= 0) {
-        this.redirectToLogin(history);
-      }
+      this.redirectToLogin(history);
     }, REDIRECT_COUNTDOWN_DURATION);
   };
 
   /**
    * Stops the interval that was used to do the countdown
-   * @param redirectTimer {setInterval} the interval that was used to do the countdown
+   * @param redirectTimer {Object} the timeout and intervals set to handle the redirect
    */
-  stopRedirectCountdown = (redirectTimer) => {
-    clearInterval(redirectTimer);
+  stopRedirectCountdown = ({ interval, timeout }) => {
+    clearInterval(interval);
+    clearTimeout(timeout);
   };
 
   /**
@@ -295,6 +293,7 @@ export class SignUp extends React.PureComponent {
   };
 
   render() {
+    document.title = `${DOCUMENT_TITLE} | Sign Up`;
     const {
       passwordError,
       secondsToRedirect,

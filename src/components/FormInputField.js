@@ -5,7 +5,7 @@ const FormInputField = ({
   placeholder, required, name, className, ...rest
 }) => (
   <input
-    required={required || false}
+    required={required}
     className={`form-control ${className || ''}`}
     placeholder={placeholder}
     name={name}

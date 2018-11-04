@@ -4,6 +4,7 @@ export const mockUserInfo = {
   username: 'testUsername',
   password: 'testPassword',
 };
+
 // model the response object according to our backend specification
 // notice the capital M in Message
 export const mockSuccessResponseObject = {

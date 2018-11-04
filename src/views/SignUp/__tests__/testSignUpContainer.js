@@ -8,10 +8,10 @@ import initialState from '../../../store/initialState';
 import configureMockStore from '../../../testConfigurations/configureMockStore';
 import * as actionTypes from '../../../actions/types';
 import { mockResponse } from '../../../services/backend/__tests__/signUpAuthenticationServiceTests';
-import { signUpUrl } from '../../../services/backend/authenticationService';
+import authenticationService, { signUpUrl } from '../../../services/backend/authenticationService';
 import { mockSuccessResponseObject } from '../../../services/backend/mockData';
 import { REDIRECT_COUNTDOWN_DURATION } from '../../../constants';
-import NotFound from '../../NotFound';
+import * as routes from '../../../routes';
 
 enzymeConfig();
 
@@ -49,7 +49,7 @@ describe('The SignUp Container', () => {
 
   afterAll(() => {
     store.clearActions();
-    wrapper.unmount();
+    jest.clearAllMocks();
   });
 
   it('should receive state and dispatch from store as props', () => {
@@ -109,13 +109,37 @@ describe('The SignUp Container', () => {
   async (done) => {
     // simulate a submission with wrong password/confirm password combination
     await form.simulate('submit', { preventDefault });
-    expect(wrapper.find('p.alert.alert-danger')).toHaveLength(1);
+    const passwordErrorElement = wrapper.find('p.alert.alert-danger');
+    expect(passwordErrorElement).toHaveLength(1);
+    expect(passwordErrorElement.text()).toEqual('Passwords do not match!');
     expect(mockAxios.post).not.toHaveBeenCalled();
     done();
   });
 
-  it('should submit the form when the passwords match', async (done) => {
+  it('should remove the passwords do not match error when the sign-up button blurs',
+    async (done) => {
+      await wrapper.find('button')
+        .find({ type: 'submit' })
+        .simulate('blur', { preventDefault });
+      const passwordErrorElement = wrapper.find('p.alert.alert-danger');
+      expect(passwordErrorElement).toHaveLength(0);
+      expect(SignUpComponent.state().passwordError.shouldDisplayErrorMessage).toEqual(false);
+      done();
+    });
+
+  it('should submit the form when the only when passwords match', async (done) => {
     // adding a similar password and simulating submit
+    await confirmPasswordInput.simulate('change',
+      {
+        target:
+          {
+            name: 'confirmPassword',
+            value: 'pass',
+          },
+      });
+    await confirmPasswordInput.simulate('focus');
+    expect(SignUpComponent.state().passwordsMatch).toEqual(false);
+
     await confirmPasswordInput.simulate('change',
       {
         target:
@@ -124,7 +148,11 @@ describe('The SignUp Container', () => {
             value: TEST_VALUE,
           },
       });
+    await confirmPasswordInput.simulate('focus');
+    expect(SignUpComponent.state().passwordsMatch).toEqual(true);
+
     await form.simulate('submit', { preventDefault });
+
     expect(mockAxios.post).toHaveBeenCalledWith(signUpUrl, {
       email: TEST_VALUE,
       password: TEST_VALUE,
@@ -160,6 +188,145 @@ describe('The SignUp Container', () => {
 
     it('should have isSubmitting equal to true', () => {
       expect(signUpProps.isSubmitting).toEqual(true);
+    });
+
+    it('should render the blur-screen element', () => {
+      expect(SignUpComponent.find('.blur-screen')).toHaveLength(1);
+    });
+
+    it('should render the loader', () => {
+      expect(SignUpComponent.find('img.sign-up-loader')).toHaveLength(1);
+    });
+
+    it('should render a disabled sign up button', () => {
+      const signUpButton = SignUpComponent.find('button').find({ type: 'submit' });
+      expect(signUpButton).toHaveLength(1);
+      expect(signUpButton.props()).toHaveProperty('disabled', true);
+      expect(signUpButton.text()).toEqual('Signing up...');
+    });
+  });
+
+  describe('On SIGN_UP_FAILURE', () => {
+    beforeAll(() => {
+      store = configureMockStore({
+        signUpState: {
+          ...initialState.signUpInitialState,
+          signUpFailure: true,
+          errorMessage: authenticationService.signUpAttributes.defaultErrorMessage,
+        },
+      });
+
+      wrapper = mount(
+        <MemoryRouter>
+          <RouterConnectedSignUp
+            store={store}
+          />
+        </MemoryRouter>);
+      SignUpComponent = wrapper.find(SignUp);
+      signUpProps = SignUpComponent.props();
+    });
+
+    it('should have signUpFailure equal to true', () => {
+      expect(signUpProps.signUpFailure).toEqual(true);
+    });
+
+    it('should have an errorMessage', () => {
+      expect(signUpProps.errorMessage).toEqual(
+        authenticationService.signUpAttributes.defaultErrorMessage,
+      );
+    });
+
+    it('should render an alert with the error message', () => {
+      const errorAlert = SignUpComponent.find('.alert-danger');
+      expect(errorAlert).toHaveLength(1);
+      expect(errorAlert.text()).toEqual(authenticationService.signUpAttributes.defaultErrorMessage);
+    });
+  });
+
+  describe('On SIGN_UP_SUCCESS', () => {
+    beforeAll(() => {
+      store = configureMockStore({
+        signUpState: {
+          ...initialState.signUpInitialState,
+          signUpSuccess: true,
+          successMessage: mockSuccessResponseObject.data.Message,
+        },
+      });
+
+      wrapper = mount(
+        <MemoryRouter>
+          <RouterConnectedSignUp
+            store={store}
+          />
+        </MemoryRouter>);
+      SignUpComponent = wrapper.find(SignUp);
+      signUpProps = SignUpComponent.props();
+    });
+
+    it('should have signUpSuccess equal to true', () => {
+      expect(signUpProps.signUpSuccess).toEqual(true);
+    });
+
+    it('should have a successMessage', () => {
+      expect(signUpProps.successMessage).toEqual(
+        mockSuccessResponseObject.data.Message,
+      );
+    });
+
+    it('should render an alert with the success message', () => {
+      const successAlert = SignUpComponent.find('.sign-up-success-message.alert-success');
+      expect(successAlert).toHaveLength(1);
+      expect(successAlert.text()).toEqual(mockSuccessResponseObject.data.Message);
+    });
+
+    it('should start the redirect countdown', async (done) => {
+      await await setTimeout(async () => {
+        expect(SignUpComponent.state().secondsToRedirect).toBeLessThan(20);
+        expect(SignUpComponent.state().shouldDisplayRedirectMessage).toEqual(false);
+        done();
+      }, REDIRECT_COUNTDOWN_DURATION / 3);
+    });
+
+    it('should render a redirect countdown when the seconds are less than 10', async (done) => {
+      await setTimeout(async () => {
+        expect(SignUpComponent.state().shouldDisplayRedirectMessage).toEqual(true);
+        expect(SignUpComponent.state().secondsToRedirect).toBeLessThan(10);
+        /* For some reason, I cannot seem to find the RedirectCountdownAlert component
+           * in the wrapper
+           */
+        // expect(SignUpComponent.find('.sign-up-success-message.alert-warning')).toHaveLength(1);
+        done();
+      }, REDIRECT_COUNTDOWN_DURATION / 3);
+    });
+
+    it('should redirect to login', async (done) => {
+      await setTimeout(async () => {
+        expect(signUpProps.history.entries).toHaveLength(2);
+        expect(signUpProps.history.entries[1].pathname).toEqual(routes.LOG_IN_ROUTE);
+        done();
+      }, REDIRECT_COUNTDOWN_DURATION / 3);
+    });
+  });
+
+  describe('When unmounting', () => {
+    beforeAll(() => {
+      // mocking the global
+      global.clearInterval = jest.fn().mockImplementationOnce();
+      global.clearTimeout = jest.fn().mockImplementationOnce();
+      wrapper.unmount();
+    });
+
+    afterAll(() => {
+      jest.clearAllMocks();
+    });
+
+    it('should clear any intervals left', () => {
+      expect(clearInterval).toHaveBeenCalled();
+      expect(clearTimeout).toHaveBeenCalled();
+    });
+
+    it('should dispatch SIGN_UP_RESET_STATE', () => {
+      expect(store.getActions()).toContainEqual({ type: actionTypes.SIGN_UP_RESET_STATE });
     });
   });
 });
